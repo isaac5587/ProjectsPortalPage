@@ -48,7 +48,7 @@ app.post('/', async(req, res) => {
 
     //console.table(result.recordset);
  
-    res.render('public/index', {customers: result.recordset});
+    res.render('public/index', { search: true, customers: result.recordset});
   }
   catch(err){
     res.status(500);

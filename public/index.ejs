@@ -32,7 +32,7 @@
             
             <form name="frmSearch" method="POST" class="form-inline mt-2 mt-md-0">
               <input name="txtSearch" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <button name="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         
           </div>
@@ -48,11 +48,11 @@
         <ul>
           <% customers.forEach(function(customer) { %>
             <li>
-              <%= customer.lastName %> - <% customer.favorites %>
+              <%= customer.lastName %> - <%= customer.favorites %>
             </li>
             <% }); %>
         </ul>
-      }
+      
 
     </main>
 
