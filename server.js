@@ -23,13 +23,45 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
 // Inject your routes in here
+app.get('/', async(req, res) => {
+  try{
+    const pool = await poolPromise;
+    const result = await pool.request()
+    .query('SELECT lastName, favorites FROM Customer;');
+
+    //console.table(result.recordset);
+ 
+    res.render('public/index', {customers: result.recordset});
+
+  }
+  catch(err){
+    res.status(500);
+    res.send(err.message);
+  }
+});
+app.post('/', async(req, res) => {
+  try{
+    const pool = await poolPromise;
+    const result = await pool.request()
+    .input('input_param', sql.NVarChar, '%' + req.body.txtSearch + '%')
+    .query('EXEC CustomerSearchByText @input_param;');
+
+    //console.table(result.recordset);
+ 
+    res.render('public/index', {customers: result.recordset});
+  }
+  catch(err){
+    res.status(500);
+    res.send(err.message);
+  }
+});
 
 
 // End routes
 
 // Set the folder for public items
 publicDir = path.join(__dirname,'public');
-app.use(express.static(publicDir))
+app.use(express.static(publicDir));
 app.set('views', __dirname);
 app.use(express.urlencoded({ extended: true }))
 

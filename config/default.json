@@ -1,7 +1,7 @@
 {
     "Settings": {
       "dbConfig": {
-        "dbConnection": ""
+        "dbConnection": "mssql://isaac.ansumana:power@ev-compsci-01.principia.local/isaac.ansumana"
       }
     }
   }
