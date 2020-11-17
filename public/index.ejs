@@ -41,20 +41,40 @@
 
     <!--Main Area-->
     <main role="main" class="container">
-      <h3> Customers</h3>
+      <h3> Projects View</h3>
       <% if(typeof search != 'undefined' && search==true) { %>
         <a href = "/" > Clear Results </a>
         <% } %>
+<div>
+  <div class= "row row-cols-1">
+    <% projects.forEach(function(project) { %>
+      <div class="col mb-3">
+      <div class="card" style="width: 20rem">
+        <div class="card-body">
+          <img class="card-img-top" width= 250 height= 250 src="/img/<%= project.icons %>"> 
+        
+          <p class= "card-text"><%= project.ProjectName %></p>
+          <h6 class="card-title" style="font-size:18px"><%= project.Descriptions %></h6>
+          
+        </div>
+      </div>
+      </div>
+      <% }); %>
+  </div>
+</div>
+
+</main>
+<!--
         <ul>
-          <% customers.forEach(function(customer) { %>
+          <% projects.forEach(function(project) { %>
             <li>
-              <%= customer.lastName %> - <%= customer.favorites %>
+              <%= project.ProjectName %> - <%= project.Descriptions %>
             </li>
             <% }); %>
         </ul>
-      
-
-    </main>
+      </main>
+      -->
+    
 
     <!-- Footer -->
 

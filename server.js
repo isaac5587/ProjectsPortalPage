@@ -27,11 +27,11 @@ app.get('/', async(req, res) => {
   try{
     const pool = await poolPromise;
     const result = await pool.request()
-    .query('SELECT lastName, favorites FROM Customer;');
+    .query('SELECT ProjectName, Descriptions, icons FROM Projects;');
 
     //console.table(result.recordset);
  
-    res.render('public/index', {customers: result.recordset});
+    res.render('public/index', {projects: result.recordset});
 
   }
   catch(err){
@@ -44,11 +44,11 @@ app.post('/', async(req, res) => {
     const pool = await poolPromise;
     const result = await pool.request()
     .input('input_param', sql.NVarChar, '%' + req.body.txtSearch + '%')
-    .query('EXEC CustomerSearchByText @input_param;');
+    .query('EXEC dbo.ProjectSearchByText @input_param;');
 
     //console.table(result.recordset);
  
-    res.render('public/index', { search: true, customers: result.recordset});
+    res.render('public/index', { search: true, projects: result.recordset});
   }
   catch(err){
     res.status(500);
